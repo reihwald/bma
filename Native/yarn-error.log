@@ -1,0 +1,78 @@
+Arguments: 
+  /snap/node/5480/bin/node /snap/node/5480/bin/yarn.js global dir
+
+PATH: 
+  /home/liam/Dokumente/BMA/Native/node_modules/.bin:/home/liam/Dokumente/BMA/node_modules/.bin:/home/liam/Dokumente/node_modules/.bin:/home/liam/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/usr/local/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/home/liam/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  12.22.7
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, write
+      at writeSync (fs.js:679:3)
+      at SyncWriteStream._write (internal/fs/sync_write_stream.js:24:3)
+      at doWrite (_stream_writable.js:403:12)
+      at writeOrBuffer (_stream_writable.js:387:5)
+      at SyncWriteStream.Writable.write (_stream_writable.js:318:11)
+      at ConsoleReporter._log (/snap/node/5480/lib/cli.js:96906:17)
+      at ConsoleReporter.log (/snap/node/5480/lib/cli.js:96894:10)
+      at dir (/snap/node/5480/lib/cli.js:36299:14)
+      at Object.<anonymous> (/snap/node/5480/lib/cli.js:25983:25)
+      at Generator.next (<anonymous>)
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "eject": "expo eject",
+      "test": "jest --watchAll"
+    },
+    "jest": {
+      "preset": "jest-expo"
+    },
+    "dependencies": {
+      "@expo/ngrok": "^2.5.0",
+      "@expo/vector-icons": "^12.0.0",
+      "@react-navigation/bottom-tabs": "^6.0.5",
+      "@react-navigation/native": "^6.0.2",
+      "@react-navigation/native-stack": "^6.1.0",
+      "expo": "~43.0.0",
+      "expo-asset": "~8.4.3",
+      "expo-constants": "~12.1.2",
+      "expo-font": "~10.0.3",
+      "expo-linking": "~2.4.2",
+      "expo-splash-screen": "~0.13.3",
+      "expo-status-bar": "~1.1.0",
+      "expo-web-browser": "~10.0.3",
+      "react": "17.0.1",
+      "react-dom": "17.0.1",
+      "react-native": "0.64.2",
+      "react-native-safe-area-context": "3.3.2",
+      "react-native-screens": "~3.8.0",
+      "react-native-web": "0.17.1"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.12.9",
+      "@types/react": "~17.0.21",
+      "@types/react-native": "~0.64.12",
+      "jest-expo": "~43.0.0",
+      "typescript": "~4.3.5"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
