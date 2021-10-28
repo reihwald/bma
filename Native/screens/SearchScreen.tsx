@@ -8,7 +8,7 @@ import { RootTabScreenProps } from '../types';
 import { ColorCombinationModel } from '../models/ColorModels';
 
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function SearchScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
     const combinationWidth = Dimensions.get('window').width;
     const combinations = [{colorCombinationId: 0, rgbFirst: "rgb(255, 99, 71)", rgbSecond: "green"}, 
         {colorCombinationId: 0, rgbFirst: "blue", rgbSecond: "green", rgbThird: "brown"},
@@ -41,8 +41,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
             fontSize: 17,
             lineHeight: 24,
         }
-    });
-    
+    })
+
     return (
         <ThemedScrollView>
             <View style={styles.infoContainer}>
