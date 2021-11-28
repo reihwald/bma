@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Dimensions, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import ColorCombination from '../components/ColorCombination';
+import { ColorBox, ColorCombinationBox } from '../components/ColorBoxes';
 
 import { Text, ThemedScrollView, View } from '../components/Themed';
 import { ColorCombinationModel, SingleColorModel } from '../models/ColorModels';
@@ -9,8 +9,11 @@ import { FirstTabParamList } from '../types';
 
 export default function SearchColorsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const combinationWidth = Dimensions.get('window').width;
-    const combinations = [{SingleColorId: 0, rgb: "tomato"}] as SingleColorModel[]
-    const exampleText = "Rot eine eine rote Farbe und steht für das das das und das. Geeignete Farben sind farbe farbe und farbe"
+    const colors = [{SingleColorId: 0, rgb: "tomato", name: "Tomato", description: "lorem imsu grau ist grau"}, 
+    {SingleColorId: 0, rgb: "grey", name: "Grau", description: "lorem imsu grau ist grau"}, 
+    {SingleColorId: 0, rgb: "blue", name: "Blau", description: "lorem imsu grau ist grau"}, 
+    {SingleColorId: 0, rgb: "beige", name: "Beige", description: "lorem imsu grau ist grau"}] as SingleColorModel[]
+    const exampleText = "Eine Farbe auswählen um mit der gewählten Farbe eine Farbkombination zu generieren"
 
     const styles = StyleSheet.create({
         container: {
@@ -41,12 +44,16 @@ export default function SearchColorsScreen({ navigation }: NativeStackScreenProp
     return (
         <ThemedScrollView>
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>Rot</Text>
+                <Text style={styles.title}>Farbe auswählen</Text>
                 <Text style={styles.colorInfoText}>{exampleText}</Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-                <TouchableOpacity onPress={() => navigation.navigate("ColorCombination")}>
-                    <Text style={styles.colorInfoText}>Sachen</Text>
-                </TouchableOpacity>
+            </View>
+            <View style={styles.container}>
+                {colors.map((color, i) => {
+                    return <TouchableOpacity key={i} onPress={() => navigation.navigate("ColorCombination", {color: color})}>
+                            <ColorBox color={color}/>
+                        </TouchableOpacity>;
+                })}
             </View>
         </ThemedScrollView>
     );

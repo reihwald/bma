@@ -2,6 +2,7 @@ export interface SingleColorModel {
     SingleColorId: number
     rgb: string
     name: string
+    description: string
 }
 
 export interface ColorCombinationModel {

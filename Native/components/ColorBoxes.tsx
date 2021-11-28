@@ -2,16 +2,18 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import Colors from '../constants/Colors';
-import { ColorCombinationModel } from '../models/ColorModels';
+import { ColorCombinationModel, SingleColorModel } from '../models/ColorModels';
 import { Dimensions } from 'react-native';
 import { Text, View } from './Themed';
 
 
-interface Props {
+interface CombinationProps {
     colorCombination: ColorCombinationModel
 }
 
-export default function ColorCombination(props: Props) {
+const combinationWidth = Dimensions.get('window').width / 3 - 0.0001;
+
+export function ColorCombinationBox(props: CombinationProps) {
     const { colorCombination } = props
     let squareAmount = 2
     if (colorCombination.rgbThird){
@@ -20,8 +22,6 @@ export default function ColorCombination(props: Props) {
     if (colorCombination.rgbFourth){
         squareAmount = squareAmount + 1
     }
-    //TODO: Remove Hack
-    const combinationWidth = Dimensions.get('window').width / 3 - 0.0001;
 
     const styles = StyleSheet.create({
         colorBox: {
@@ -90,3 +90,43 @@ export default function ColorCombination(props: Props) {
     );
 }
 
+interface SingleProps {
+    color: SingleColorModel
+}
+
+export function ColorBox(props: SingleProps) {
+    const { color } = props
+
+    const styles = StyleSheet.create({
+        colorBox: {
+            height: combinationWidth, 
+            width: combinationWidth,
+            backgroundColor: color.rgb
+        },
+        helpContainer: {
+            marginTop: 15,
+            marginHorizontal: 20,
+            alignItems: 'center',
+        },
+        boxWrapper: {
+            flex: 1,
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: combinationWidth,
+            height: combinationWidth,
+        },
+        megaWrapper: {
+            margin: combinationWidth / 4,
+            width: combinationWidth,
+            backgroundColor: "lightgreen"
+        },
+      });
+
+    return (
+        <View style={styles.megaWrapper}>
+            <View style={styles.boxWrapper}>
+                <View style={styles.colorBox} />
+            </View>
+        </View>
+    );
+}

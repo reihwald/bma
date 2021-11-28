@@ -45,6 +45,11 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
             flexGrow: 1,
             backgroundColor: route.params.combination.rgbFirst,
             marginBottom: 8
+        },
+        titleStarContainer:{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
         }
     })
 
@@ -52,7 +57,10 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
     return (
         <ThemedScrollView>
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>Outfit Visualisierung</Text>
+                <View style={styles.titleStarContainer}>
+                    <Text style={styles.title}>Outfit Visualisierung</Text>
+                    <Text style={styles.title}>O</Text>
+                </View>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.container}>
                     <View style={styles.pictureBox} />
