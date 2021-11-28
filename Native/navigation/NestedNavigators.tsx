@@ -2,20 +2,29 @@ import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchColorsScreen from '../screens/SearchColorsScreen';
 import SearchCombinationsScreen from '../screens/SearchCombinationsScreen';
+import { FirstTabParamList } from '../types';
+import ColorVisualisationScreen from '../screens/ColorVisualisationScreen';
 
-const Stack = createNativeStackNavigator(); 
-
-export function FirstTabNavigator(){
+const Stack = createNativeStackNavigator<FirstTabParamList>(); 
+export const FirstTabNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="Screen1">    // contains all child component screens within a stack. 
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
             <Stack.Screen
-            name="Screen1"
-            component={SearchColorsScreen}
+                name="SearchColors"
+                component={SearchColorsScreen}
             />
             <Stack.Screen
-            name="NestedScreen1"
-            component={SearchCombinationsScreen}
+                name="ColorCombination"
+                component={SearchCombinationsScreen}
+            />
+            <Stack.Screen
+                name="ColorVisualisation"
+                component={ColorVisualisationScreen}
             />
         </Stack.Navigator>
     );
-  }
+}

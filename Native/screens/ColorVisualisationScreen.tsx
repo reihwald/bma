@@ -1,22 +1,25 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Dimensions, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import ColorCombination from '../components/ColorCombination';
 
 import { Text, ThemedScrollView, View } from '../components/Themed';
 import { ColorCombinationModel, SingleColorModel } from '../models/ColorModels';
 import { FirstTabParamList } from '../types';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
-export default function SearchColorsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
+
+
+export default function ColorVisualisationScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const combinationWidth = Dimensions.get('window').width;
-    const combinations = [{SingleColorId: 0, rgb: "tomato"}] as SingleColorModel[]
-    const exampleText = "Rot eine eine rote Farbe und steht für das das das und das. Geeignete Farben sind farbe farbe und farbe"
+    const route = useRoute<RouteProp<FirstTabParamList, "ColorVisualisation">>()
+    const boxWidth = Dimensions.get('window').width / 3 - 0.0001;
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            flexDirection: "row",
+            display: "flex",
+            flexDirection: "column",
             flexWrap: "wrap",
+            alignContent: "center",
         },
         title: {
             fontSize: 28,
@@ -35,18 +38,28 @@ export default function SearchColorsScreen({ navigation }: NativeStackScreenProp
         colorInfoText: {
             fontSize: 17,
             lineHeight: 24,
+        },
+        pictureBox:{
+            height: boxWidth,
+            width: boxWidth,
+            flexGrow: 1,
+            backgroundColor: route.params.combination.rgbFirst,
+            marginBottom: 8
         }
     })
+
 
     return (
         <ThemedScrollView>
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>Rot</Text>
-                <Text style={styles.colorInfoText}>{exampleText}</Text>
+                <Text style={styles.title}>Outfit Visualisierung</Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-                <TouchableOpacity onPress={() => navigation.navigate("ColorCombination")}>
-                    <Text style={styles.colorInfoText}>Sachen</Text>
-                </TouchableOpacity>
+                <View style={styles.container}>
+                    <View style={styles.pictureBox} />
+                    <View style={styles.pictureBox} />
+                    <View style={styles.pictureBox} />
+                    <View style={styles.pictureBox} />
+                </View>
             </View>
         </ThemedScrollView>
     );

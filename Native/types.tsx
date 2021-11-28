@@ -6,6 +6,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ColorCombinationModel } from './models/ColorModels';
 
 declare global {
   namespace ReactNavigation {
@@ -15,7 +16,6 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
   NotFound: undefined;
 };
 
@@ -30,6 +30,12 @@ export type RootTabParamList = {
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
+BottomTabScreenProps<RootTabParamList, Screen>,
+NativeStackScreenProps<RootStackParamList>
 >;
+
+export type FirstTabParamList = {
+  SearchColors: undefined;
+  ColorCombination: undefined;
+  ColorVisualisation: {combination: ColorCombinationModel};
+};

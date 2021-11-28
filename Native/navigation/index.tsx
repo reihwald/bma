@@ -35,17 +35,13 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
-    </Stack.Navigator>
-  );
+    function RootNavigator() {
+        return (
+            <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+            </Stack.Navigator>
+      );
 }
 
 /**
@@ -55,45 +51,30 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <BottomTab.Navigator
-        initialRouteName="TabOne"
-        screenOptions={{
-            tabBarActiveTintColor: Colors[colorScheme].tint,
-        }
-    }>
-        <BottomTab.Screen
-            name="TabOne"
-            component={SearchCombinationsScreen}
-            options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-            title: "Kombinationen",
-            tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-            headerRight: () => (
-                <Pressable
-                onPress={() => navigation.navigate('Modal')}
-                style={({ pressed }) => ({
-                    opacity: pressed ? 0.5 : 1,
-                })}>
-                <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme].text}
-                    style={{ marginRight: 15 }}
-                />
-                </Pressable>
-            ),
-            })}
-        />
-        <BottomTab.Screen
-            name="TabTwo"
-            component={TabTwoScreen}
-            options={{
-            title: "Gespeicherte Outfits",
-            tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
-            }}
-        />
+    const colorScheme = useColorScheme();
+    return (
+        <BottomTab.Navigator
+            initialRouteName="TabOne"
+            screenOptions={{
+                tabBarActiveTintColor: Colors[colorScheme].tint,
+            }
+        }>
+            <BottomTab.Screen
+                name="TabOne"
+                component={FirstTabNavigator}
+                options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+                title: "Kombinationen",
+                tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+                })}
+            />
+            <BottomTab.Screen
+                name="TabTwo"
+                component={TabTwoScreen}
+                options={{
+                title: "Gespeicherte Outfits",
+                tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+                }}
+            />
         </BottomTab.Navigator>
     );
 }

@@ -1,14 +1,14 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { Dimensions, ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import ColorCombination from '../components/ColorCombination';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, ThemedScrollView, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 import { ColorCombinationModel } from '../models/ColorModels';
+import { FirstTabParamList } from '../types';
 
 
-export default function SearchCombinationsScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function SearchCombinationsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const combinationWidth = Dimensions.get('window').width;
     const combinations = [{colorCombinationId: 0, rgbFirst: "rgb(255, 99, 71)", rgbSecond: "green"}, 
         {colorCombinationId: 0, rgbFirst: "blue", rgbSecond: "green", rgbThird: "brown"},
@@ -53,7 +53,9 @@ export default function SearchCombinationsScreen({ navigation }: RootTabScreenPr
             </View>
             <View style={styles.container}>
                 {combinations.map((combination, i) => {
-                    return <ColorCombination key={i} colorCombination={combination}/>;
+                    return <TouchableOpacity key={i} onPress={() => navigation.navigate("ColorVisualisation", { combination: combination })}>
+                            <ColorCombination colorCombination={combination}/>
+                        </TouchableOpacity>;
                 })}
             </View>
         </ThemedScrollView>
