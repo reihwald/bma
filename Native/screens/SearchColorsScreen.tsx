@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Dimensions, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { ColorBox, ColorCombinationBox } from '../components/ColorBoxes';
 
@@ -9,11 +9,31 @@ import { FirstTabParamList } from '../types';
 
 export default function SearchColorsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const combinationWidth = Dimensions.get('window').width;
-    const colors = [{SingleColorId: 0, rgb: "tomato", name: "Tomato", description: "lorem imsu grau ist grau"}, 
-    {SingleColorId: 0, rgb: "grey", name: "Grau", description: "lorem imsu grau ist grau"}, 
-    {SingleColorId: 0, rgb: "blue", name: "Blau", description: "lorem imsu grau ist grau"}, 
-    {SingleColorId: 0, rgb: "beige", name: "Beige", description: "lorem imsu grau ist grau"}] as SingleColorModel[]
+    const colors = [] as SingleColorModel[]
     const exampleText = "Eine Farbe auswählen um mit der gewählten Farbe eine Farbkombination zu generieren"
+    
+    useEffect(() => {
+        fetch("https://localhost:5000/colours", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            }
+        })
+            .then(res => res.json())
+            .then(responseParamerter => {
+                const a = responseParamerter
+                a.map((color: SingleColorModel) => {
+                    const newColor = {
+                        SingleColorId: color.SingleColorId,
+                        description: color.description,
+                        name: color.name,
+                        rgb: color.rgb
+                    } as SingleColorModel
+                    colors.push(newColor)
+                })
+
+            })
+    })
 
     const styles = StyleSheet.create({
         container: {

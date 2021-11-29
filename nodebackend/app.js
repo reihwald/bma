@@ -1,10 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+};
 
 const app = express();
+var cors = require('cors')
+app.use(cors());
+app.options('*', cors());
 const port = process.env.PORT || 5000;
 
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
@@ -55,4 +65,7 @@ app.get('/farbkombi/:id' , (req, res) => {
 });
 
 //Listen on Port
-app.listen(port, () => console.log(`listen on port ${port}` ))
+https.createServer(options, app)
+.listen(port, function (req, res) {
+  console.log(`Server started at port ${port}`);
+});
