@@ -1,32 +1,46 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { Text, ThemedScrollView, View } from '../components/Themed';
 
-export default function TabTwoScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Sigma Tab</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
-    </View>
-  );
-}
+const combinationWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+    container: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+    },
+    separator: {
+        marginVertical: 10,
+        height: 1,
+        width: '100%',
+    },
+    colorInfoText: {
+        fontSize: 17,
+        lineHeight: 24,
+    },
+    infoContainer: {
+        paddingTop: combinationWidth / 12,
+        paddingLeft: combinationWidth / 12,
+        paddingRight: combinationWidth / 12
+},
 });
+
+export default function TabTwoScreen() {
+    return (
+        <ThemedScrollView>
+            <View style={styles.infoContainer}>
+                <Text style={styles.title}>Gespeicherte Outfits</Text>
+                <Text style={styles.colorInfoText}>Hier sind alle Farbkombinationen zu sehen die gespeichert wurden.</Text>
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+            </View>
+        </ThemedScrollView>
+    );
+}
+

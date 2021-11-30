@@ -6,6 +6,7 @@ import { Text, ThemedScrollView, View } from '../components/Themed';
 import { ColorCombinationModel, SingleColorModel } from '../models/ColorModels';
 import { FirstTabParamList } from '../types';
 import { RouteProp, useRoute } from '@react-navigation/native';
+import { useState } from 'react';
 
 
 
@@ -13,6 +14,7 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
     const combinationWidth = Dimensions.get('window').width;
     const route = useRoute<RouteProp<FirstTabParamList, "ColorVisualisation">>()
     const boxWidth = Dimensions.get('window').width / 3 - 0.0001;
+    const [saved, setSaved] = useState(false)
 
     const styles = StyleSheet.create({
         container: {
@@ -49,7 +51,8 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
         titleStarContainer:{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
+            flexDirection: "row"
         }
     })
 
@@ -59,7 +62,9 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
             <View style={styles.infoContainer}>
                 <View style={styles.titleStarContainer}>
                     <Text style={styles.title}>Outfit Visualisierung</Text>
-                    <Text style={styles.title}>O</Text>
+                    <TouchableOpacity onPress={() => setSaved(!saved)}>
+                        {saved ? <Text style={styles.title}>★</Text> : <Text style={styles.title}>☆</Text>}
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.container}>
