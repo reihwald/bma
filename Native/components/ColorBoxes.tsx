@@ -101,7 +101,7 @@ export function ColorBox(props: SingleProps) {
         colorBox: {
             height: combinationWidth, 
             width: combinationWidth,
-            backgroundColor: color.rgb
+            backgroundColor: color.RGB
         },
         helpContainer: {
             marginTop: 15,

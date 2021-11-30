@@ -12,10 +12,10 @@ import { FirstTabParamList } from '../types';
 export default function SearchCombinationsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const route = useRoute<RouteProp<FirstTabParamList, "ColorCombination">>()
     const combinationWidth = Dimensions.get('window').width;
-    const combinations = [{colorCombinationId: 0, rgbFirst: route.params.color.rgb, rgbSecond: "green"}, 
-        {colorCombinationId: 0, rgbFirst: route.params.color.rgb, rgbSecond: "green", rgbThird: "brown"},
-        {colorCombinationId: 0, rgbFirst: route.params.color.rgb, rgbSecond: "coral", rgbThird: "grey", rgbFourth: "orange"},
-        {colorCombinationId: 0, rgbFirst: route.params.color.rgb, rgbSecond: "beige"}] as ColorCombinationModel[]
+    const combinations = [{colorCombinationId: 0, rgbFirst: route.params.color.RGB, rgbSecond: "green"}, 
+        {colorCombinationId: 0, rgbFirst: route.params.color.RGB, rgbSecond: "green", rgbThird: "brown"},
+        {colorCombinationId: 0, rgbFirst: route.params.color.RGB, rgbSecond: "coral", rgbThird: "grey", rgbFourth: "orange"},
+        {colorCombinationId: 0, rgbFirst: route.params.color.RGB, rgbSecond: "beige"}] as ColorCombinationModel[]
 
     const styles = StyleSheet.create({
         container: {
@@ -46,8 +46,8 @@ export default function SearchCombinationsScreen({ navigation }: NativeStackScre
     return (
         <ThemedScrollView>
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>{route.params.color.name}</Text>
-                <Text style={styles.colorInfoText}>{route.params.color.description}</Text>
+                <Text style={styles.title}>{route.params.color.Name}</Text>
+                <Text style={styles.colorInfoText}>{route.params.color.Beschreibung}</Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <Text style={styles.colorInfoText}>Eine der folgenden Farbkombinationen auswählen um ein Outfit mit den vorhandenen Farben vorgeschlagen zu bekommen:</Text>
             </View>

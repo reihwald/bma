@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { ColorBox, ColorCombinationBox } from '../components/ColorBoxes';
 
@@ -9,11 +9,11 @@ import { FirstTabParamList } from '../types';
 
 export default function SearchColorsScreen({ navigation }: NativeStackScreenProps<FirstTabParamList>) {
     const combinationWidth = Dimensions.get('window').width;
-    const colors = [] as SingleColorModel[]
+    const [colorState, setColorState] = useState([] as SingleColorModel[])
     const exampleText = "Eine Farbe auswählen um mit der gewählten Farbe eine Farbkombination zu generieren"
     
     useEffect(() => {
-        fetch("https://localhost:5000/colours", {
+        fetch("https://reihwald-bma-test.herokuapp.com/colours", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
@@ -24,16 +24,17 @@ export default function SearchColorsScreen({ navigation }: NativeStackScreenProp
                 const a = responseParamerter
                 a.map((color: SingleColorModel) => {
                     const newColor = {
-                        SingleColorId: color.SingleColorId,
-                        description: color.description,
-                        name: color.name,
-                        rgb: color.rgb
+                        IDFarbe: color.IDFarbe,
+                        Beschreibung: color.Beschreibung,
+                        Name: color.Name,
+                        RGB: color.RGB
                     } as SingleColorModel
-                    colors.push(newColor)
+                    console.log(newColor)
+                    setColorState(colors => [newColor, ...colors])
                 })
 
             })
-    })
+    }, [])
 
     const styles = StyleSheet.create({
         container: {
@@ -69,7 +70,7 @@ export default function SearchColorsScreen({ navigation }: NativeStackScreenProp
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             </View>
             <View style={styles.container}>
-                {colors.map((color, i) => {
+                {colorState.map((color, i) => {
                     return <TouchableOpacity key={i} onPress={() => navigation.navigate("ColorCombination", {color: color})}>
                             <ColorBox color={color}/>
                         </TouchableOpacity>;

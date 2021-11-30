@@ -1,12 +1,11 @@
 export interface SingleColorModel {
-    SingleColorId: number
-    rgb: string
-    name: string
-    description: string
+    IDFarbe: number
+    RGB: string
+    Name: string
+    Beschreibung: string
 }
 
 export interface ColorCombinationModel {
-    colorCombinationId: number
     rgbFirst: string
     rgbSecond: string
     rgbThird: string | null
@@ -19,9 +18,4 @@ export interface OutfitModel {
     jacketPictureLink: string
     pantsPictureLink: string
     shoesPictureLink: string
-}
-
-export interface ColorSelectedAnswerModel {
-    description: string
-    combinations: ColorCombinationModel[]
 }
