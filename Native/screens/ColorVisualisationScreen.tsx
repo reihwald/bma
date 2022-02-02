@@ -45,8 +45,19 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
             height: boxWidth,
             width: boxWidth,
             flexGrow: 1,
-            backgroundColor: route.params.combination.rgbFirst,
             marginBottom: 8
+        },
+        firstBox:{
+            backgroundColor: route.params.combination.rgbFirst,
+        },
+        secondBox:{
+            backgroundColor: route.params.combination.rgbSecond,
+        },
+        thirdBox:{
+            backgroundColor: route.params.combination.rgbThird ? route.params.combination.rgbThird : route.params.combination.rgbFirst,
+        },
+        fourthBox:{
+            backgroundColor: route.params.combination.rgbFourth ? route.params.combination.rgbFourth: route.params.combination.rgbSecond,
         },
         titleStarContainer:{
             display: "flex",
@@ -68,10 +79,10 @@ export default function ColorVisualisationScreen({ navigation }: NativeStackScre
                 </View>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.container}>
-                    <View style={styles.pictureBox} />
-                    <View style={styles.pictureBox} />
-                    <View style={styles.pictureBox} />
-                    <View style={styles.pictureBox} />
+                    <View style={[styles.pictureBox, styles.firstBox]} />
+                    <View style={[styles.pictureBox, styles.secondBox]} />
+                    <View style={[styles.pictureBox, styles.thirdBox]} />
+                    <View style={[styles.pictureBox, styles.fourthBox]} />
                 </View>
             </View>
         </ThemedScrollView>

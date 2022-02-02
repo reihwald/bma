@@ -19,3 +19,9 @@ export interface OutfitModel {
     pantsPictureLink: string
     shoesPictureLink: string
 }
+
+export interface ColorCombinationRequestModel {
+    IDKombination: number
+    FKFarbe1: number
+    FKFarbe2: number
+}

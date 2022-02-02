@@ -71,7 +71,7 @@ export default function SearchColorsScreen({ navigation }: NativeStackScreenProp
             </View>
             <View style={styles.container}>
                 {colorState.map((color, i) => {
-                    return <TouchableOpacity key={i} onPress={() => navigation.navigate("ColorCombination", {color: color})}>
+                    return <TouchableOpacity key={i} onPress={() => navigation.navigate("ColorCombination", {color: color, colors: colorState})}>
                             <ColorBox color={color}/>
                         </TouchableOpacity>;
                 })}

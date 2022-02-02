@@ -36,6 +36,6 @@ NativeStackScreenProps<RootStackParamList>
 
 export type FirstTabParamList = {
   SearchColors: undefined;
-  ColorCombination: {color: SingleColorModel};
+  ColorCombination: {color: SingleColorModel, colors: SingleColorModel[]};
   ColorVisualisation: {combination: ColorCombinationModel};
 };
